@@ -52,7 +52,7 @@
     </style>
 </head>
 
-<body oncontextmenu="return false;">
+<body oncontextmenu="return true;">
     @include('templates.includes.message')
     @yield('page')
     @yield('actions')
