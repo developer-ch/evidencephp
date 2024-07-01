@@ -32,7 +32,7 @@ class EvidenceController extends Controller
 
     public function store(Request $request)
     {
-        $inputs['reference'] = date("dmY_", strtotime($request->date_process)) . $request->reference;
+        $inputs['reference'] = date("dmY_", strtotime($request->date_process)) . $request->operation . $request->reference;
         $inputs['created_at'] = $request->date_process;
         try {
             $evidence = Evidence::Create($inputs);

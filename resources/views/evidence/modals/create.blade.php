@@ -19,6 +19,15 @@
                 </div>
                 <div class="input-field col s12 l8">
                     <i class="material-icons prefix">description</i>
+                    <select name="operation" id="operation">
+                        <option value="">NENHUMA</option>
+                        <option value="CARGA_">CARREGAMENTO</option>
+                        <option value="DESCARGA_">DESCARGA</option>
+                    </select>
+                    <label for="reference">OPERAÇÃO</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">description</i>
                     <input id="reference" type="text" name="reference" value="{{ $reference ?? '' }}" required
                         placeholder="Exemplo:C1 ABCD1234567" autofocus="autofocus">
                     <label for="reference">Agrupador</label>
