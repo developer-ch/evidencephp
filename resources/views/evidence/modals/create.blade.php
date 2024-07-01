@@ -21,7 +21,7 @@
                     <i class="material-icons prefix">description</i>
                     <select name="operation" id="operation">
                         <option value="">NENHUMA</option>
-                        <option value="CARGA_">CARREGAMENTO</option>
+                        <option value="CARREGAMENTO_">CARREGAMENTO</option>
                         <option value="DESCARGA_">DESCARGA</option>
                     </select>
                     <label for="reference">OPERAÇÃO</label>
