@@ -20,9 +20,9 @@
                 <div class="input-field col s12 l8">
                     <i class="material-icons prefix">description</i>
                     <select name="operation" id="operation">
-                        <option value="">NENHUMA</option>
-                        <option value="CARREGAMENTO_">CARREGAMENTO</option>
-                        <option value="DESCARGA_">DESCARGA</option>
+                        <option value="">-</option>
+                        <option value="ENTRADA_">ENTRADA</option>
+                        <option value="SAIDA_">SAIDA</option>
                     </select>
                     <label for="reference">OPERAÇÃO</label>
                 </div>

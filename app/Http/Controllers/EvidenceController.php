@@ -38,10 +38,10 @@ class EvidenceController extends Controller
             $evidence = Evidence::Create($inputs);
             return redirect()->route('evidence.index', ['search_evidence' => $evidence])->with('success', "SUCESSO: Agrupador $request->reference cadastrado");
         } catch (\Throwable $th) {
-            if ($th->getCode() == 23000) {
-                return back()->with('error', "ERRO: Agrupador " . $inputs['reference'] . " Já cadastrado!");
-            }
             $message = $th->getMessage();
+            if ($th->getCode() == 23000) {
+                $message = "Agrupador " . $inputs['reference'] . " Já cadastrado!";
+            }
             return redirect()->route('evidence.index')->with('error', "ERRO: $message");
         }
     }
