@@ -87,7 +87,7 @@
                             <div class="file-field input-field">
                                 <div class="btn teal darken-4 pulse">
                                     <span><i class="material-icons Large teal darken-4 ">add_a_photo</i></span>
-                                    <input type="file" name="evidence_file[]" multiple accept="image/*">
+                                    <input type="file" name="evidence_file[]" multiple accept="image/*" capture>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path" type="hidden" placeholder="Upload one or more files" readonly
