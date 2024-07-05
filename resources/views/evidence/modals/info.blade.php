@@ -8,7 +8,7 @@
             <br /><br /><b>DESENVOLVEDOR</b>
             <hr>
             Carlos Henrique Mendes Lopes
-            <br /><br /><b>VERSÃO</b> 1
+            <br /><br /><b>VERSÃO:</b> 1
         </div>
     </div>
 </div>
