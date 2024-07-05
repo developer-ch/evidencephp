@@ -58,4 +58,16 @@ class EvidenceFileController extends Controller
             return back()->with('error', "ERRO: $message");
         }
     }
+
+    public function moveFile(Request $request, EvidenceFile $evidenceFile) 
+    {
+        try{
+            $evidenceFile->update(['evidence_id'=>$request->new_evidence]);
+            $evidenceFile->save();
+            return redirect()->back()->with('success', "Movido");
+        }catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return back()->with('error', "ERRO: $message");
+        }
+    }
 }

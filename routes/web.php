@@ -29,6 +29,7 @@ Route::get('evidence_file/dowload/{evidenceFile}',[EvidenceFileController::class
 
 Route::get('/evidence_files/{evidence}/{evidenceFile}',[EvidenceController::class,'carousel'])->name('file.evidence.carousel');
 Route::post('evidence_file/description/{evidenceFile}',[EvidenceFileController::class,'updateDescription'])->name('file.evidence.description');
+Route::middleware('auth')->post('evidencefile/move_file/{evidenceFile}',[EvidenceFileController::class,'moveFile'])->name('file.evidence.move');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

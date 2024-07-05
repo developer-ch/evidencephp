@@ -154,11 +154,17 @@
                                                 class="material-icons">file_download</i>BAIXAR</a>
                                     </li>
                                     <li class="divider" tabindex="-1"></li>
+                                    <li><a href="#" data-id="{{ $f_evd->id }}"
+                                            class="open-modal-move-file indigo-text text-darken-4 modal-trigger"><i
+                                                class="material-icons">move_to_inbox</i><b>MOVER</b></a>
+                                    </li>
                                     <li><a href="#" data-image='{{ './storage/' . $f_evd->file }}?{{ rand() }}'
                                             id='{{ $f_evd->id }}'
                                             class="open-modal-delete-file red-text text-darken-4 modal-trigger"><i
                                                 class="material-icons">delete_forever</i><b>EXCLUIR</b></a>
                                     </li>
+
+                                </li>
                                 @endauth
                             </ul>
                             <div class="card">
@@ -194,6 +200,7 @@
         </div>
     @endsection
     @include('evidence.modals.delete_evidence_file')
+    @include('evidence.modals.move_evidence_file')
 @endisset
 @push('scripts')
     <script>
@@ -204,7 +211,7 @@
         });
         $(".select2").select2({
             dropdownAutoWidth: true,
-            placeholder: "INFORME OU CADASTRE UM",
+            placeholder: "INFORME OU CADASTRE",
             allowClear: true,
             width: '100%'
         });
@@ -235,6 +242,15 @@
             $('b#id_file').html("#" + id)
             $('#confirmeDeleteEvidenceFile').modal('open', true)
         });
+
+        $('a.open-modal-move-file').click((e) => {
+            const dataId = e.currentTarget.getAttribute("data-id");
+            let action = "{{ route('file.evidence.move', 0) }}"
+            action = action.replace("/0", "/" + dataId)
+            $('form#form_move_file').attr('action', action)
+            $('#modal_move_file').modal('open', true)
+        });
+
         $('input#reference').focus();
 
         @unless ($searchEvidence)
