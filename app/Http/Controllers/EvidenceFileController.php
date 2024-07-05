@@ -62,9 +62,14 @@ class EvidenceFileController extends Controller
     public function moveFile(Request $request, EvidenceFile $evidenceFile) 
     {
         try{
-            $evidenceFile->update(['evidence_id'=>$request->new_evidence]);
+            $fileOld = $evidenceFile->file;
+            $evidenceNew = Evidence::findOrFail($request->new_evidence);
+            $evidenceOld = Evidence::findOrFail($evidenceFile->evidence_id);
+            $fileNew = str_replace($evidenceOld->reference,$evidenceNew->reference,$evidenceFile->file);
+            $evidenceFile->update(['evidence_id'=>  $evidenceNew->id, 'file' => $fileNew]);
             $evidenceFile->save();
-            return redirect()->back()->with('success', "Movido");
+            $this->renameDir($fileOld,$fileNew);
+            return redirect()->back()->with('success', "MOVIDO<br/>DE:{$evidenceOld->reference}<br/>PARA:{$evidenceNew->reference}");
         }catch (\Throwable $th) {
             $message = $th->getMessage();
             return back()->with('error', "ERRO: $message");

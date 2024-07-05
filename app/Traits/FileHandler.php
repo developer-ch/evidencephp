@@ -61,10 +61,11 @@ trait FileHandler
         return $this->getDirStorage()->deleteDirectory($directoryName);
     }
 
-    public function renameDir(string $oldDir, string $newDir)
+    public function renameDir(string $old, string $new)
     {
-        if (!$this->getDirStorage()->exists($oldDir)) 
+        if (!$this->getDirStorage()->exists($old)) 
             return;
-        return rename($this->getDirStorage()->path($oldDir), $this->getDirStorage()->path($newDir));
+        return $this->getDirStorage()->move($old,$new);
+
     }
 }
