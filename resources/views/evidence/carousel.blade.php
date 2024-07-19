@@ -8,6 +8,12 @@
     AGRUPADOR: <b>{{ $evidence->reference }}</b>
     <div class="carousel carousel-slider">
         <div class="carousel-item">
+            <form id="frmDescriptionFile"
+                        action="{{ route('file.evidence.description', $evidenceFile->id) }}" method="POST"
+                        autocomplete="off">
+                        @csrf
+                        <input type="text" name="description" placeholder="Descrição breve" maxlength="32" value="{{ $evidenceFile->description}}" onchange="postDescriptionFile(this.form)">
+                    </form> 
             <img height="95%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
             <p class="black-text center">{{$evidenceFile->description }}</p>
         </div>
