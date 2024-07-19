@@ -52,7 +52,7 @@ class EvidenceFileController extends Controller
             $evidenceFile->update(['description'=>$request->description]);
             $evidenceFile->save();
 
-            return redirect()->back();
+            return back();
         } catch (\Throwable $th) {
             $message = $th->getMessage();
             return back()->with('error', "ERRO: $message");
