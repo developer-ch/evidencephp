@@ -2,7 +2,6 @@
 @section('title', 'AGRUPADOR DE FOTOS')
 @section('page')
     @include('evidence.modals.create')
-    @include('evidence.modals.search_group')
     @include('evidence.modals.edit')
     @include('evidence.modals.delete')
     <div class="row" style="height: 100vh">
@@ -250,11 +249,6 @@
             $('form#form_move_file').attr('action', action)
             $('#modal_move_file').modal('open', true)
         });
-
-        $('input#reference').focus();
-
-        @unless ($searchEvidence)
-          $('#modal_search_group').modal('open', true) ;
-        @endunless      
+        $('input#reference').focus();   
     </script>
 @endpush

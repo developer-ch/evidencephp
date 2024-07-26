@@ -5,10 +5,12 @@
             <b>EVIDENCE</b>
             <hr>
             O "<b>EVIDENCE</b>" é um sistema, para agrupar arquivos de imagem, buscando facilitar a organização.
+            <br /><br /><b>VERSÃO</b>
+            <hr>
+            1.0.0
             <br /><br /><b>DESENVOLVEDOR</b>
             <hr>
             Carlos Henrique Mendes Lopes
-            <br /><br /><b>VERSÃO:</b> 1
         </div>
     </div>
 </div>
