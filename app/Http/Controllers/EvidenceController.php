@@ -6,17 +6,24 @@ use App\Http\Resources\EvidenceResource;
 use App\Models\Evidence;
 use App\Models\EvidenceFile;
 use App\Traits\ImageHandler;
+use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 
 class EvidenceController extends Controller
 {
     use ImageHandler;
+    private const QTY_LAST_MONTHS = 2;
 
     public function index(Request $request)
     {
         $searchEvidence = $request->search_evidence ?? null;
+        $lastMonths = $request->last_months ?? self::QTY_LAST_MONTHS;
+        if(!is_numeric($lastMonths) || $lastMonths < self::QTY_LAST_MONTHS){
+            $lastMonths = self::QTY_LAST_MONTHS;
+        }
+
         $evidence = null;
-        $evidences = EvidenceResource::collection(Evidence::latest()->orderBy('id', 'DESC')->get());
+        $evidences = EvidenceResource::collection(Evidence::latest()->whereMonth('created_at', '>', date('m')-$lastMonths)->orderBy('id', 'DESC')->get());
         $filesEvidence = [];
         if ($searchEvidence) {
             $evidence = Evidence::find($searchEvidence);
