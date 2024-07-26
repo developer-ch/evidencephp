@@ -18,12 +18,12 @@ class EvidenceController extends Controller
     {
         $searchEvidence = $request->search_evidence ?? null;
         $lastMonths = $request->last_months ?? self::QTY_LAST_MONTHS;
-        if(!is_numeric($lastMonths) || $lastMonths < self::QTY_LAST_MONTHS){
+        if(!is_numeric($lastMonths) || $lastMonths < self::QTY_LAST_MONTHS || $lastMonths > 12){
             $lastMonths = self::QTY_LAST_MONTHS;
         }
 
         $evidence = null;
-        $evidences = EvidenceResource::collection(Evidence::latest()->whereMonth('created_at', '>', date('m')-$lastMonths)->orderBy('id', 'DESC')->get());
+        $evidences = EvidenceResource::collection(Evidence::latest()->whereYear('created_at', '=', date('Y'))->whereMonth('created_at', '>', date('m')-$lastMonths)->orderBy('id', 'DESC')->get());
         $filesEvidence = [];
         if ($searchEvidence) {
             $evidence = Evidence::find($searchEvidence);
