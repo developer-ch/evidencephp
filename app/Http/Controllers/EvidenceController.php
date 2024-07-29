@@ -6,24 +6,26 @@ use App\Http\Resources\EvidenceResource;
 use App\Models\Evidence;
 use App\Models\EvidenceFile;
 use App\Traits\ImageHandler;
-use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 
 class EvidenceController extends Controller
 {
     use ImageHandler;
-    private const QTY_LAST_MONTHS = 2;
+    private const QTY_DAYS_OF_MONTH = 30;
 
     public function index(Request $request)
     {
         $searchEvidence = $request->search_evidence ?? null;
-        $lastMonths = $request->last_months ?? self::QTY_LAST_MONTHS;
-        if(!is_numeric($lastMonths) || $lastMonths < self::QTY_LAST_MONTHS || $lastMonths > 12){
-            $lastMonths = self::QTY_LAST_MONTHS;
+        
+        if($request->last_months){
+            $lastDays =  !is_numeric($request->last_months) || $request->last_months < 1 ? self::QTY_DAYS_OF_MONTH : $request->last_months * self::QTY_DAYS_OF_MONTH;
+        }else{
+            $lastDays = $request->last_days ?? self::QTY_DAYS_OF_MONTH;
+            $lastDays = !is_numeric($lastDays) || $lastDays < 0 ? self::QTY_DAYS_OF_MONTH : $lastDays;
         }
-
+        
         $evidence = null;
-        $evidences = EvidenceResource::collection(Evidence::latest()->whereYear('created_at', '=', date('Y'))->whereMonth('created_at', '>', date('m')-$lastMonths)->orderBy('id', 'DESC')->get());
+        $evidences = EvidenceResource::collection(Evidence::latest()->where('created_at', '>', now()->subDays($lastDays)->endOfDay())->orderBy('id', 'DESC')->get());
         $filesEvidence = [];
         if ($searchEvidence) {
             $evidence = Evidence::find($searchEvidence);
@@ -107,9 +109,9 @@ class EvidenceController extends Controller
         return redirect()->back()->with('error', "ERRO: Não existe arquivos para dowload");
     }
 
-    public function carousel(Evidence $evidence,EvidenceFile $evidenceFile)
+    public function carousel(Evidence $evidence, EvidenceFile $evidenceFile)
     {
         $evidenceFiles = EvidenceFile::where('evidence_id', $evidence->id)->orderBy('id', 'DESC')->get();
-        return view('evidence.carousel',compact('evidenceFiles','evidenceFile','evidence'));
+        return view('evidence.carousel', compact('evidenceFiles', 'evidenceFile', 'evidence'));
     }
 }
