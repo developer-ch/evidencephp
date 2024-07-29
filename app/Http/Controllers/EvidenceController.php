@@ -12,6 +12,7 @@ class EvidenceController extends Controller
 {
     use ImageHandler;
     private const QTY_DAYS_OF_MONTH = 30;
+    private const QTY_LAST_DAYS = 10;
 
     public function index(Request $request)
     {
@@ -20,8 +21,8 @@ class EvidenceController extends Controller
         if($request->last_months){
             $lastDays =  !is_numeric($request->last_months) || $request->last_months < 1 ? self::QTY_DAYS_OF_MONTH : $request->last_months * self::QTY_DAYS_OF_MONTH;
         }else{
-            $lastDays = $request->last_days ?? self::QTY_DAYS_OF_MONTH;
-            $lastDays = !is_numeric($lastDays) || $lastDays < 1 ? 1 : $lastDays;
+            $lastDays = $request->last_days ?? self::QTY_LAST_DAYS;
+            $lastDays = !is_numeric($lastDays) || $lastDays < 1 ? self::QTY_LAST_DAYS : $lastDays;
         }
         
         $evidence = null;
