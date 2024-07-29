@@ -21,7 +21,7 @@ class EvidenceController extends Controller
             $lastDays =  !is_numeric($request->last_months) || $request->last_months < 1 ? self::QTY_DAYS_OF_MONTH : $request->last_months * self::QTY_DAYS_OF_MONTH;
         }else{
             $lastDays = $request->last_days ?? self::QTY_DAYS_OF_MONTH;
-            $lastDays = !is_numeric($lastDays) || $lastDays < 0 ? self::QTY_DAYS_OF_MONTH : $lastDays;
+            $lastDays = !is_numeric($lastDays) || $lastDays < 1 ? 1 : $lastDays;
         }
         
         $evidence = null;
