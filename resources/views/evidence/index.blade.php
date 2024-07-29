@@ -68,6 +68,7 @@
                         @endforeach
                     @endisset
                 </select>
+                <input type="hidden" name="last_days" value="{{ $lastDays }}">
             </form>
         @endsection
         @isset($searchEvidence)

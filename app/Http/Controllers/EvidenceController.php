@@ -32,7 +32,7 @@ class EvidenceController extends Controller
             $evidence = Evidence::find($searchEvidence);
             $filesEvidence = EvidenceFile::where('evidence_id', $searchEvidence)->orderBy('id', 'DESC')->get();
         }
-        return view('evidence.index', compact(['evidence', 'evidences', 'searchEvidence', 'filesEvidence']));
+        return view('evidence.index', compact(['evidence', 'evidences', 'searchEvidence', 'filesEvidence','lastDays']));
     }
 
     public function create()
