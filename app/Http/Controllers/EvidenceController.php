@@ -12,7 +12,7 @@ class EvidenceController extends Controller
 {
     use ImageHandler;
     private const QTY_DAYS_OF_MONTH = 30;
-    private const QTY_LAST_DAYS = 10;
+    private const QTY_LAST_DAYS = 3;
 
     public function index(Request $request)
     {
