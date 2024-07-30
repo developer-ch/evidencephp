@@ -12,9 +12,9 @@
                         action="{{ route('file.evidence.description', $evidenceFile->id) }}" method="POST"
                         autocomplete="off">
                         @csrf
-                        <input type="text" name="description" placeholder="Descrição breve" maxlength="32" value="{{ $evidenceFile->description}}" onchange="postDescriptionFile(this.form)">
+                        <input type="text" name="description" placeholder="Informe uma legenda" maxlength="32" value="{{ $evidenceFile->description}}" onchange="postDescriptionFile(this.form)">
                     </form> 
-            <img height="95%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
+            <img height="90%" width="100%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
             <p class="black-text center">{{$evidenceFile->description }}</p>
         </div>
         @foreach ($evidenceFiles as $f_evd)
@@ -24,9 +24,9 @@
                         action="{{ route('file.evidence.description', $f_evd->id) }}" method="POST"
                         autocomplete="off">
                         @csrf
-                        <input type="text" name="description" placeholder="Descrição breve" maxlength="32" value="{{$f_evd->description}}" onchange="postDescriptionFile(this.form)">
+                        <input type="text" name="description" placeholder="Informe uma legenda" maxlength="32" value="{{$f_evd->description}}" onchange="postDescriptionFile(this.form)">
                     </form> 
-                    <img height="85%" width="100%" src=" {{ asset('storage/' . $f_evd->file) }}?{{ rand() }}">
+                    <img height="90%" width="100%" src=" {{ asset('storage/' . $f_evd->file) }}?{{ rand() }}">
                 </div>
             @endif
         @endforeach

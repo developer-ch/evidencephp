@@ -1,9 +1,9 @@
 @extends('templates.layout')
 @section('title', 'AGRUPADOR DE FOTOS')
 @section('page')
-    @include('evidence.modals.create')
-    @include('evidence.modals.edit')
-    @include('evidence.modals.delete')
+@include('evidence.modals.create')
+@include('evidence.modals.edit')
+@include('evidence.modals.delete')
     <div class="row" style="height: 100vh">
         <div class="col s12">
             <a class='hoverable dropdown-trigger btn btn-floating indigo darken-4 tooltipped' href='#'
@@ -128,7 +128,7 @@
                 Encontrei <b>{{ count($filesEvidence) }}</b> arquivo(s)
                 <hr />
             @endisset
-            <div class="row" style="margin:0;overflow:auto;height:70vh;overflow:auto;width:100%">
+            <div class="row" style="margin:0;overflow:auto;height:68vh;overflow:auto;width:100%">
                 @forelse ($filesEvidence as $f_evd)
                     <div class="col s6 m3 l2" style="padding:0 0 0 5px;">
                         <div class="card hoverable" style="margin:0 0 5px 0;border-radius:15px;">
@@ -181,7 +181,7 @@
                                                 action="{{ route('file.evidence.description', $f_evd->id) }}" method="POST"
                                                 autocomplete="off">
                                                 @csrf
-                                                <input type="text" name="description" placeholder="Descrição breve" maxlength="32" value="{{$f_evd->description}}" onchange="postDescriptionFile(this.form)">
+                                                <input type="text" name="description" placeholder="Legenda" maxlength="32" value="{{$f_evd->description}}" onchange="postDescriptionFile(this.form)">
                                             </form>
                                         </div>
                                     </div>
