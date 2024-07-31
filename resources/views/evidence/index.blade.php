@@ -4,7 +4,7 @@
 @include('evidence.modals.create')
 @include('evidence.modals.edit')
 @include('evidence.modals.delete')
-    <div class="row" style="height: 100vh">
+    <div class="row" style="height: 92vh">
         <div class="col s12">
             <a class='hoverable dropdown-trigger btn btn-floating indigo darken-4 tooltipped' href='#'
                 data-target='dropdown0' data-position="bottom" data-tooltip='MENU GERAL'><i class="material-icons">menu</i></a>
