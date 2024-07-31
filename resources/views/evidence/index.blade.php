@@ -102,25 +102,22 @@
                                     <input name="adjust_img" class="teal" type="checkbox" checked type="checkbox"
                                         onclick="this.checked?$('.op_adjust_img').text('SIM,'):$('.op_adjust_img').text('NÃO,')">
                                     <span class="lever teal darken-4"></span>
-                                    <b><span class="op_adjust_img">SIM, </span></b>ajustar <b>IMG</b> maiores que 1024x768
+                                    <b><span class="op_adjust_img">SIM,</span></b>ajustar <b>IMG</b> maior que 1024x768
                                 </label>
                             </div>
-                            <div class="file-field input-field">
-                                <div class="switch">
-                                    <label>
-                                        <input name="stamp_to_date" class="teal" type="checkbox" checked
-                                            onclick="this.checked?$('.op_stamp_to_date').text('SIM,'):$('.op_stamp_to_date').text('NÃO,')">
-                                        <span class="lever teal darken-4"></span>
-                                        <b><span class="op_stamp_to_date">SIM,</span></b>
-                                    </label>
-                                    <label> carimbar data e hora</label>
-                                </div>
+                            <div class="switch">
+                                <label>
+                                    <input name="stamp_to_date" class="teal" type="checkbox" checked
+                                        onclick="this.checked?$('.op_stamp_to_date').text('SIM,'):$('.op_stamp_to_date').text('NÃO,')">
+                                    <span class="lever teal darken-4"></span>
+                                    <b><span class="op_stamp_to_date">SIM,</span></b>carimbar data e hora
+                                </label>
                             </div>
                         </div>
                     </form>
                 @endsection
             @endisset
-        </div>
+        </div>                   
     </div>
     @isset($filesEvidence)
         @section('listing')
