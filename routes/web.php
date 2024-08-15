@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',fn  () => redirect()->route('evidence.index'));
 Route::resource('/evidence', EvidenceController::class)->except(['destroy'])->names('evidence');
 Route::middleware('auth')->resource('/evidence', EvidenceController::class)->only(['destroy'])->names('evidence');
+Route::post('evidence/filter',[EvidenceController::class,'index'])->name('evidence.filter');
 
 Route::post('ajustar_imagem_para_email/{evidence}', [EvidenceController::class,'resizeImageToMail'])->name('evidence.resizeImageToMail');
 Route::get('download/{evidence}', [EvidenceController::class,'downloadFiles'])->middleware('auth')->name('evidence.downloadFiles');

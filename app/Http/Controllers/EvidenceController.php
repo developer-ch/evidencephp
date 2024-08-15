@@ -11,28 +11,25 @@ use Illuminate\Http\Request;
 class EvidenceController extends Controller
 {
     use ImageHandler;
-    private const QTY_DAYS_OF_MONTH = 30;
-    private const QTY_LAST_DAYS = 3;
+    private const QTY_LAST_DAYS = 1;
 
     public function index(Request $request)
     {
         $searchEvidence = $request->search_evidence ?? null;
-        
-        if($request->last_months){
-            $lastDays =  !is_numeric($request->last_months) || $request->last_months < 1 ? self::QTY_DAYS_OF_MONTH : $request->last_months * self::QTY_DAYS_OF_MONTH;
-        }else{
-            $lastDays = $request->last_days ?? self::QTY_LAST_DAYS;
-            $lastDays = !is_numeric($lastDays) || $lastDays < 1 ? self::QTY_LAST_DAYS : $lastDays;
-        }
-        
+        $lastDays = $request->last_days ?? self::QTY_LAST_DAYS;
+        $lastDays = !is_numeric($lastDays) || $lastDays < 1 ? self::QTY_LAST_DAYS : $lastDays;
+
+        $operation = $request->operation??"";
+        $reference = $request->reference??"";
+
         $evidence = null;
-        $evidences = EvidenceResource::collection(Evidence::latest()->where('created_at', '>', now()->subDays($lastDays)->endOfDay())->orderBy('id', 'DESC')->get());
+        $evidences = EvidenceResource::collection(Evidence::latest()->where('reference','like','%'.$operation.'%'.$reference.'%')->where('created_at', '>', now()->subDays($lastDays)->endOfDay())->orderBy('id', 'DESC')->get());
         $filesEvidence = [];
         if ($searchEvidence) {
             $evidence = Evidence::find($searchEvidence);
             $filesEvidence = EvidenceFile::where('evidence_id', $searchEvidence)->orderBy('id', 'DESC')->get();
         }
-        return view('evidence.index', compact(['evidence', 'evidences', 'searchEvidence', 'filesEvidence','lastDays']));
+        return view('evidence.index', compact(['evidence', 'evidences', 'searchEvidence', 'filesEvidence','lastDays','operation','reference']));
     }
 
     public function create()

@@ -1,6 +1,7 @@
 @extends('templates.layout')
 @section('title', 'AGRUPADOR DE FOTOS')
 @section('page')
+@include('evidence.modals.filter')
 @include('evidence.modals.create')
 @include('evidence.modals.edit')
 @include('evidence.modals.delete')
@@ -52,6 +53,11 @@
                     @endauth
                 </ul>
             @endisset
+            <a href="#filter" id='btn-filter'
+                class="hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
+                data-position="bottom">
+                <i class="small material-icons">filter_list</i>
+            </a>
             <a href="#create" id='btn-add-selected'
                 class="hoverable btn-floating right teal darken-4 tooltipped modal-trigger" data-tooltip='NOVO AGRUPADOR'
                 data-position="bottom">
@@ -69,6 +75,8 @@
                     @endisset
                 </select>
                 <input type="hidden" name="last_days" value="{{ $lastDays }}">
+                <input type="hidden" name="operation" value="{{ $operation }}">
+                <input type="hidden" name="reference" value="{{ $reference }}">
             </form>
         @endsection
         @isset($searchEvidence)
