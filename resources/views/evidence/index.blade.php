@@ -31,7 +31,7 @@
                 @endauth
                 </li>
             </ul>
-            <b>AGRUPADOR</b>
+            <b>AGRUPADOR</b><sup>({{ $evidences->count() }})</sup>
             @isset($searchEvidence)
                 <a class='hoverable dropdown-trigger btn btn-floating right indigo darken-4 tooltipped' href='#'
                     data-target='dropdown1' data-position="bottom" data-tooltip='MENU AGRUPADOR'><i
@@ -54,30 +54,30 @@
                 </ul>
             @endisset
             <a href="#filter" id='btn-filter'
-                class="hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
+                class="large hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
                 data-position="bottom">
-                <i class="small material-icons">filter_list</i>
+                <i class=" material-icons">filter_list</i>
             </a>
             <a href="#create" id='btn-add-selected'
                 class="hoverable btn-floating right teal darken-4 tooltipped modal-trigger" data-tooltip='NOVO AGRUPADOR'
                 data-position="bottom">
                 <i class="small material-icons">add</i>
             </a>
-            <form action="{{ route('evidence.index') }}" method="GET">
-                <select class="select2 browser-default" name="search_evidence" onchange="this.form.submit()">
+            @isset($evidences)
+                <form action="{{ route('evidence.index') }}" method="GET">
+                    <select class="select2 browser-default" name="search_evidence" onchange="this.form.submit()">
                     <option value="" selected disabled>LOCALIZAR AGRUPADOR</option>
-                    @isset($evidences)
                         @foreach ($evidences as $evidence)
                             <option value="{{ $evidence->id }}"
                                 @isset($searchEvidence){{ $searchEvidence == $evidence->id ? 'selected' : '' }}@endisset>
                                 {{ $evidence->reference }}</option>
                         @endforeach
-                    @endisset
-                </select>
-                <input type="hidden" name="last_days" value="{{ $lastDays }}">
-                <input type="hidden" name="operation" value="{{ $operation }}">
-                <input type="hidden" name="reference" value="{{ $reference }}">
-            </form>
+                    </select>
+                    <input type="hidden" name="last_days" value="{{ $lastDays }}">
+                    <input type="hidden" name="operation" value="{{ $operation }}">
+                    <input type="hidden" name="reference" value="{{ $reference }}">
+                </form>
+            @endisset
         @endsection
         @isset($searchEvidence)
             @section('actions')
