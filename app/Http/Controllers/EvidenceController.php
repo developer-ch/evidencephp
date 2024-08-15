@@ -24,6 +24,7 @@ class EvidenceController extends Controller
 
         $evidence = null;
         $evidences = EvidenceResource::collection(Evidence::latest()->where('reference','like','%'.$operation.'%'.$reference.'%')->where('created_at', '>', now()->subDays($lastDays)->endOfDay())->orderBy('id', 'DESC')->get());
+        $searchEvidence = $searchEvidence??$evidences->count() == 1;
         $filesEvidence = [];
         if ($searchEvidence) {
             $evidence = Evidence::find($searchEvidence);

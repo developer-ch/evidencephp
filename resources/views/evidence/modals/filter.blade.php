@@ -17,7 +17,7 @@
                         <option value="120" {{ $lastDays==120 ? "selected":""}}>Ultimos 120 dias</option>
                         <option value="365" {{ $lastDays==365 ? "selected":""}}>Ultimos 365 dias</option>
                     </select>
-                    <label for="reference">Périodo:</label>
+                    <label for="reference">Período:</label>
                 </div>
                 <div class="input-field col s12 l6">
                     <i class="material-icons prefix">description</i>
@@ -39,11 +39,8 @@
             <button class="btn waves-effect waves-light teal darken-4" type="submit">APLICAR
                 <i class="material-icons left">save</i>
             </button>
-            <a href="{{route('evidence.index')}}" class="btn yellown modal-trigger" onclick="updatePage()"><i class="material-icons left">sync</i>APLICAR PADRÃO
+            <a href="{{route('evidence.index')}}" class="btn red modal-trigger" onclick="updatePage()"><i class="material-icons left">delete_sweep</i>LIMPAR
             </a>
-            <button class="btn waves-effect waves-light RED darken-4" type="reset">LIMPAR CAMPOS
-                <i class="material-icons left">delete_sweep</i>
-            </button>
         </div>
     </form>
 </div>
