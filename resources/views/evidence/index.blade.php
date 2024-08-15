@@ -12,8 +12,8 @@
             <!-- Dropdown Structure -->
             <ul id='dropdown0' class='dropdown-content' style="border-radius: 5px">
                 <b>MENU_GERAL</b>
-                <li><a href="#" class="indigo-text text-darken-4 modal-trigger" id='btn-update-page'
-                        onclick="updatePage()"><i class="material-icons">sync</i>RECARREGAR APP</a></li>
+                <li><a href="{{route('evidence.index')}}" class="indigo-text text-darken-4 modal-trigger" id='btn-update-page'
+                        onclick="updatePage()"><i class="material-icons">home</i>RECARREGAR APP</a></li>
                 <li><a href="#modalinfo" class="indigo-text text-darken-4 modal-trigger"><i
                             class="material-icons">info</i>INFORMAÇÕES</a></li>
                 <li class="divider" tabindex="-1"></li>
@@ -54,7 +54,7 @@
                 </ul>
             @endisset
             <a href="#filter" id='btn-filter'
-                class="hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
+                class="hide-on-small-only hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
                 data-position="bottom">
                 <i class="small material-icons">filter_list</i>
             </a>

@@ -1,17 +1,12 @@
 <!-- Modal Structure -->
-<div id="filter" class="modal">
+<div id="filter" class="modal modal-fixed-footer">
     <form action="{{ route('evidence.filter') }}" name="filter_evidence" method="post">
         @csrf
         <div class="modal-content">
             <b>FILTROS</b><i class="modal-close material-icons right">close</i>
             <hr>
             <div class="row">
-                <button class="btn waves-effect waves-light teal darken-4" type="submit">APLICAR
-                    <i class="material-icons left">save</i>
-                </button>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 l4">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">date_range</i>
                     <select name="last_days" id="last_days">
                         <option value="1" {{ $lastDays==1 ? "selected":""}}>Hoje</option>
@@ -24,7 +19,7 @@
                     </select>
                     <label for="reference">Périodo:</label>
                 </div>
-                <div class="input-field col s12 l4">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">description</i>
                     <select name="operation" id="operation">
                         <option value="" selected>-</option>
@@ -35,10 +30,20 @@
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">description</i>
-                    <input id="reference" type="text" name="reference" value="{{$reference??''}}"placeholder="Digite...">
+                    <input id="reference" type="text" name="reference" value="{{$reference??''}}" autofocus placeholder="Digite...">
                     <label for="reference">Referencia</label>
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light teal darken-4" type="submit">APLICAR
+                <i class="material-icons left">save</i>
+            </button>
+            <a href="{{route('evidence.index')}}" class="btn yellown modal-trigger" onclick="updatePage()"><i class="material-icons left">sync</i>APLICAR PADRÃO
+            </a>
+            <button class="btn waves-effect waves-light RED darken-4" type="reset">LIMPAR CAMPOS
+                <i class="material-icons left">delete_sweep</i>
+            </button>
         </div>
     </form>
 </div>
