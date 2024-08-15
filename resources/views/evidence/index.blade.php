@@ -54,7 +54,7 @@
                 </ul>
             @endisset
             <a href="#filter" id='btn-filter'
-                class="hide-on-small-only hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
+                class="hoverable btn-floating right orange darken-4 tooltipped modal-trigger" data-tooltip='FILTRAR AGRUPADOR'
                 data-position="bottom">
                 <i class="small material-icons">filter_list</i>
             </a>
