@@ -1,4 +1,4 @@
-@extends('templates.layout')
+@extends('layouts.main')
 @section('title', 'AGRUPADOR DE FOTOS')
 @section('page')
 @include('evidence.modals.filter')

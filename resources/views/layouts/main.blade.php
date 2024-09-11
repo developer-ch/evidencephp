@@ -53,7 +53,7 @@
 </head>
 
 <body oncontextmenu="return true;">
-    @include('templates.includes.message')
+    @include('includes.message')
     @yield('page')
     @yield('actions')
     @include('evidence.modals.info')

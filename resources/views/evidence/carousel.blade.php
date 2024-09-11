@@ -1,4 +1,4 @@
-@extends('templates.layout')
+@extends('layouts.main')
 @section('title', 'AGRUPADOR DE FOTOS')
 @section('page')
     <a href="{{ route('evidence.index', ['search_evidence' => $evidence->id]) }}"
