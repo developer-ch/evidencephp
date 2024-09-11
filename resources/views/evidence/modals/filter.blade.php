@@ -16,7 +16,7 @@
                         <option value="60" {{ $lastDays==60 ? "selected":""}}>Ultimos 60 dias</option>
                         <option value="120" {{ $lastDays==120 ? "selected":""}}>Ultimos 120 dias</option>
                         <option value="365" {{ $lastDays==365 ? "selected":""}}>Ultimos 365 dias</option>
-                        <option value="9999999" {{ $lastDays==9999999 ? "selected":""}}>Todos</option>
+                        <option value="99999" {{ $lastDays==99999 ? "selected":""}}>Todos</option>
                     </select>
                     <label for="reference">Período:</label>
                 </div>
