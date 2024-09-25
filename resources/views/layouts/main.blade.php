@@ -34,15 +34,54 @@
             border: 3px solid orange;
         }
 
-        .row{
+        .row {
             margin: 0;
         }
-        
-        .carousel{
+
+        .carousel {
             position: absolute;
             height: 92.5%;
             width: 100%;
             margin-top: 40px;
+        }
+
+        table {
+            position: relative;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        table tr>td {
+            max-width: 30.5rem;
+            padding: 0.3rem 0.6rem;
+            border-bottom: 1px solid #ccc;
+            overflow: auto;
+            /*white-space: nowrap;
+            text-overflow: clip;*/
+        }
+
+        table>thead>tr>th {
+            background: darkblue;
+            position: sticky;
+            border-left: #ffffff 1px solid;
+            top: 0;
+            /* Don't forget this, required for the stickiness */
+            color: #ffffff;
+            padding: 0.3rem 0.6rem;
+            min-width: 6rem;
+        }
+
+        .title_box {
+            border-top: black 2px solid;
+        }
+
+        .title_box #title {
+            position: relative;
+            top: -0.5em;
+            margin-left: 1em;
+            display: inline;
+            background-color: white;
         }
     </style>
 </head>
