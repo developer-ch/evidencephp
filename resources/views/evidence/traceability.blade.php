@@ -7,6 +7,7 @@
         class="btn-floating right indigo darken-4 tooltipped" data-tooltip='Fechar Visualização' data-position="bottom">
         <i class="small material-icons">close</i>
     </a>
+    <p>Encontrei {{ $traceabilities->count() }} registros</p>
     <div id="content" style="overflow:auto;height:85vh;overflow:auto;width:99.8%">
         <table class="responsive-table">
             <thead>
@@ -16,14 +17,13 @@
                     <th>Usuario</th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach ($traceabilities as $log)
-                <tr>
-                    <td>{{ $log->message }}</td>
-                    <td>{{ $log->created_at }}</td>
-                    <td>{{ $log->user->name }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $log->message }}</td>
+                        <td>{{ date('d/m/Y H:i', strtotime($log->created_at)) }}</td>
+                        <td>{{ $log->user->name }} </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
