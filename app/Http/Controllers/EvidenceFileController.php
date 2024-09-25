@@ -30,8 +30,12 @@ class EvidenceFileController extends Controller
 
     public function destroy(EvidenceFile $evidenceFile)
     {
-        $this->deleteFile($evidenceFile->file);
-        $evidenceFile->delete();
+        if($this->deleteFile($evidenceFile->file)){
+            $traceabilityController = new TraceabilityController;
+            $traceabilityController->store("DELETE", "Foi excluido o arquivo $evidenceFile->file");
+            $evidenceFile->delete();
+        }
+
         return Redirect::route('evidence.index', ['search_evidence' => $evidenceFile->evidence_id])->with('success', "Excluido com sucesso!");
     }
 
@@ -43,6 +47,8 @@ class EvidenceFileController extends Controller
 
     public function dowloadFile(EvidenceFile $evidenceFile)
     {
+        $traceabilityController = new TraceabilityController;
+        $traceabilityController->store("DOWN", "Foi feito download do arquivo $evidenceFile->file");
         return $this->download($evidenceFile->file);
     }
 
@@ -69,6 +75,10 @@ class EvidenceFileController extends Controller
             $evidenceFile->update(['evidence_id'=>  $evidenceNew->id, 'file' => $fileNew]);
             $evidenceFile->save();
             $this->renameDir($fileOld,$fileNew);
+
+            $traceabilityController = new TraceabilityController;
+            $traceabilityController->store("MOV", "O arquivo $fileOld mudou para $fileNew");
+            
             return redirect()->back()->with('success', "MOVIDO<br/>DE:{$evidenceOld->reference}<br/>PARA:{$evidenceNew->reference}");
         }catch (\Throwable $th) {
             $message = $th->getMessage();

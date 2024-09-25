@@ -18,6 +18,9 @@
                             class="material-icons">info</i>INFORMAÇÕES</a></li>
                 <li class="divider" tabindex="-1"></li>
                 @auth
+                    <li><a href="{{ route('evidence.traceability') }}" class="indigo-text text-darken-4 modal-trigger"><i
+                                class="material-icons">history</i>RASTREABILIDADE</a>
+                    </li>
                     <li><a href="{{ route('profile.edit') }}" class="indigo-text text-darken-4 modal-trigger"><i
                                 class="material-icons">account_circle</i>PERFIL</a>
 

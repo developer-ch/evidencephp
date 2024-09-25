@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class EvidenceController extends Controller
 {
     use ImageHandler;
-    private const QTY_LAST_DAYS = 1;
+    private const QTY_LAST_DAYS = 7;
 
     public function index(Request $request)
     {
@@ -74,6 +74,8 @@ class EvidenceController extends Controller
             $evidence->save();
 
             if ($this->renameDir($evidenceOld, $evidence->reference)) {
+                $traceabilityController = new TraceabilityController;
+                $traceabilityController->store("UPDATE", "O agrupador $evidenceOld mudou para $evidence->reference");
                 $evidencesFiles = EvidenceFile::where('evidence_id', $evidence->id)->where('file', 'LIKE', $evidenceOld . "%")->get();
                 foreach ($evidencesFiles as $evidenceFile) {
                     $evidenceFile->file = \Str::replace($evidenceOld, $evidence->reference, $evidenceFile->file);
@@ -93,8 +95,11 @@ class EvidenceController extends Controller
     public function destroy(Evidence $evidence)
     {
         $nameEvidence = $evidence->reference;
-        $evidence->delete();
-        $this->deleteAllFiles($nameEvidence);
+        if($evidence->delete()){
+            $traceabilityController = new TraceabilityController;
+            $traceabilityController->store("DELETE", "Foi excluido o agrupador $nameEvidence e seus arquivos");
+            $this->deleteAllFiles($nameEvidence);
+        }
         return redirect()->route('evidence.index')->with('success', "SUCESSO: Agrupador $nameEvidence excluido");
     }
 
@@ -102,6 +107,8 @@ class EvidenceController extends Controller
     {
         $evidenceFiles = EvidenceFile::where('evidence_id', $evidence->id)->get();
         if ($evidenceFiles) {
+            $traceabilityController = new TraceabilityController;
+            $traceabilityController->store("DOWN", "Foram baixados os arquivos do agrupador $evidence->reference");
             return $this->downloadAll($evidence->reference);
         }
         return redirect()->back()->with('error', "ERRO: Não existe arquivos para dowload");

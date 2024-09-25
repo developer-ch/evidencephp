@@ -3,6 +3,7 @@
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\EvidenceFileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TraceabilityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::post('evidence/filter',[EvidenceController::class,'index'])->name('eviden
 
 Route::post('ajustar_imagem_para_email/{evidence}', [EvidenceController::class,'resizeImageToMail'])->name('evidence.resizeImageToMail');
 Route::get('download/{evidence}', [EvidenceController::class,'downloadFiles'])->middleware('auth')->name('evidence.downloadFiles');
+Route::get('/logs', [TraceabilityController::class,'index'])->middleware('auth')->name('evidence.traceability');
 Route::post('evidence_file/{evidence}',[EvidenceFileController::class,'store'])->name('file.evidence.storage');
 Route::middleware('auth')->delete('evidencefile/{evidenceFile}',[EvidenceFileController::class,'destroy'])->name('file.evidence.delete');
 Route::get('evidencefile/{evidenceFile}/{angle?}',[EvidenceFileController::class,'rotate'])->name('file.evidence.rotate');
