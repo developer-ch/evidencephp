@@ -18,9 +18,11 @@ class TraceabilityController extends Controller
     }
 
     public function store(string $type, string $message){
-        $this->modelTraceability->user_id = Auth::user()->id;
-        $this->modelTraceability->type = $type;
-        $this->modelTraceability->message = $message;
-        return $this->modelTraceability->save();
+        if(Auth::user()){
+            $this->modelTraceability->user_id = Auth::user()->id;
+            $this->modelTraceability->type = $type;
+            $this->modelTraceability->message = $message;
+            return $this->modelTraceability->save();
+        }
     }
 }

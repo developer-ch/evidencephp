@@ -75,7 +75,7 @@ class EvidenceController extends Controller
 
             if ($this->renameDir($evidenceOld, $evidence->reference)) {
                 $traceabilityController = new TraceabilityController;
-                $traceabilityController->store("UPDATE", "O agrupador $evidenceOld mudou para $evidence->reference");
+               $traceabilityController->store("UPDATE", "O agrupador $evidenceOld mudou para $evidence->reference");
                 $evidencesFiles = EvidenceFile::where('evidence_id', $evidence->id)->where('file', 'LIKE', $evidenceOld . "%")->get();
                 foreach ($evidencesFiles as $evidenceFile) {
                     $evidenceFile->file = \Str::replace($evidenceOld, $evidence->reference, $evidenceFile->file);
