@@ -13,7 +13,7 @@ class TraceabilityController extends Controller
     }
 
     public function index(){
-        $traceabilities = $this->modelTraceability->with('user')->get();
+        $traceabilities = $this->modelTraceability->orderByDesc('created_at')->with('user')->get();
         return view("evidence.traceability",compact('traceabilities'));
     }
 
