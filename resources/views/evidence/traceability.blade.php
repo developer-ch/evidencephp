@@ -9,24 +9,36 @@
     </a>
     <p>Encontrei {{ $traceabilities->count() }} registros</p>
     <div id="content" style="overflow:auto;height:85vh;overflow:auto;width:99.8%">
-        <table class="responsive-table">
+        <table class="hide-on-med-and-down">
             <thead>
                 <tr>
                     <th>Mensagem</th>
-                    <th>Data</th>
-                    <th>Usuario</th>
+                    <th>Momento</th>
+                    <th>Autor</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($traceabilities as $log)
-                    <tr>
-                        <td>{{ $log->message }}</td>
-                        <td>{{ date('d/m/Y H:i', strtotime($log->created_at)) }}</td>
-                        <td>{{ $log->user->name }} </td>
-                    </tr>
+                <tr>
+                    <td>{{ $log->message }}</td>
+                    <td>{{ date('d/m/Y H:i', strtotime($log->created_at)) }}</td>
+                    <td>{{ $log->user->name }} </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
+
+        <ul class="collection hide-on-large-only">
+            @foreach ($traceabilities as $log)
+            <li class="collection-item">
+                <span class="title"><b>Mensagem:</b> {{ $log->message }}</span>
+                <p>
+                    <b>Momento:</b> {{ date('d/m/Y H:i', strtotime($log->created_at)) }} <br>
+                    <b>Autor:</b> {{ $log->user->name }}
+                </p>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
 
