@@ -190,7 +190,7 @@
                                     action="{{ route('file.evidence.description', $f_evd->id) }}" method="POST"
                                     autocomplete="off">
                                     @csrf
-                                    <input type="text" name="description" placeholder="Legenda" maxlength="32" value="{{$f_evd->description}}" onchange="postDescriptionFile(this.form)">
+                                    <input type="text" name="description" placeholder="Legenda" maxlength="32" value="{{$f_evd->description}}" oninput="postDescriptionFile(this.form)">
                                 </form>
                             </div>
                         </div>
