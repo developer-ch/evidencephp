@@ -2,7 +2,7 @@
 @section('title', 'Evidence Logs')
 @section('page')
 <div>
-    <div class="navbar-fixed ">
+    <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper indigo darken-4">
                 <form id="frm_search_traceability">
@@ -14,7 +14,7 @@
             </div>
         </nav>
     </div>
-    <div>
+    <div style="width: 96%;margin-inline: auto;word-wrap:break-word ;">
         <ul class="collection">
             @foreach ($traceabilities as $log)
             <li class="collection-item">
@@ -35,7 +35,7 @@
     const frmSearchTraceability = document.getElementById('frm_search_traceability');
 
     frmSearchTraceability.addEventListener("submit", e => e.preventDefault());
-    
+
     inputSearchTraceabilities.addEventListener("input", (e) => {
         listTraceabilities(e.target.value);
     });
