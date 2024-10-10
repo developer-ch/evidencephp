@@ -27,7 +27,7 @@
         minute: 'numeric',
         second: 'numeric'
     };
-    options.timeZone = 'UTC';
+    options.timeZone = 'America/Sao_paulo';
 
     (async () => {
         const response = await fetch(API_URL_BASE)
