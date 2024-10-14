@@ -184,16 +184,6 @@
                                 src="{{ './storage/' . $f_evd->file }}?{{ rand() }}"
                                 style="border-bottom-left-radius:15px;border-bottom-right-radius: 15px">
                         </a>
-                        <div class="card-content">
-                            <div class="row">
-                                <form id="frmDescriptionFile" class="col s12"
-                                    action="{{ route('file.evidence.description', $f_evd->id) }}" method="POST"
-                                    autocomplete="off">
-                                    @csrf
-                                    <input type="text" name="description" placeholder="Legenda" maxlength="32" value="{{$f_evd->description}}" oninput="postDescriptionFile(this.form)">
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

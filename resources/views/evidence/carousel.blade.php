@@ -13,7 +13,7 @@ AGRUPADOR: <b>{{ $evidence->reference }}</b>
             autocomplete="off">
             @csrf
             <label for="text-legenda">Legenda:</label>
-            <input id="text-legenda" type="text" name="description" style="padding-left: 5px; width: 50%"  placeholder="Informe a legenda" maxlength="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
+            <input id="text-legenda" type="text" name="description" style="padding-left: 5px; width: 80%"  placeholder="Informe a legenda" maxlength="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
         </form>
         <img height="86%" width="100%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
     </div>
