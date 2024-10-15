@@ -43,6 +43,8 @@ class EvidenceController extends Controller
         $inputs['created_at'] = $request->date_process;
         try {
             $evidence = Evidence::Create($inputs);
+            $traceabilityController = new TraceabilityController;
+            $traceabilityController->store("CREATE", "Foi criado o agrupador $evidence->reference");
             return redirect()->route('evidence.index', ['search_evidence' => $evidence])->with('success', "SUCESSO: Agrupador $request->reference cadastrado");
         } catch (\Throwable $th) {
             $message = $th->getMessage();
