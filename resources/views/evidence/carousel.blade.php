@@ -12,24 +12,32 @@ AGRUPADOR: <b>{{ $evidence->reference }}</b>
             action="{{ route('file.evidence.description', $evidenceFile->id) }}" method="POST"
             autocomplete="off">
             @csrf
-            <label for="text-legenda">Legenda:</label>
-            <input id="text-legenda" type="text" name="description" style="padding-left: 5px; width: 80%"  placeholder="Informe a legenda" maxlength="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="text-legenda">Legenda:</label>
+                    <input id="text-legenda" type="text" name="description" maxlength="32" data-length="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
+                </div>
+            </div>
         </form>
         <img height="86%" width="100%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
     </div>
     @foreach ($evidenceFiles as $f_evd)
-        @if ($f_evd->id != $evidenceFile->id)
-            <div class="carousel-item">
-                <form id="frmDescriptionFile"
-                    action="{{ route('file.evidence.description', $f_evd->id) }}" method="POST"
-                    autocomplete="off">
-                    @csrf
+    @if ($f_evd->id != $evidenceFile->id)
+    <div class="carousel-item">
+        <form id="frmDescriptionFile"
+            action="{{ route('file.evidence.description', $f_evd->id) }}" method="POST"
+            autocomplete="off">
+            @csrf
+            <div class="row">
+                <div class="input-field col s12 m6">
                     <label for="text-legenda">Legenda:</label>
-                    <input id="text-legenda-{{$evidenceFile->id}}" type="text" name="description" style="padding-left: 5px; width: 50%"  placeholder="Informe a legenda" maxlength="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
-                </form>
-                <img height="86%" width="100%" src=" {{ asset('storage/' . $f_evd->file) }}?{{ rand() }}">
+                    <input id="text-legenda" type="text" name="description" data-length="32" maxlength="32" value="{{ $f_evd->description}}" oninput="postDescriptionFile(this.form)">
+                </div>
             </div>
-        @endif
+        </form>
+        <img height="86%" width="100%" src=" {{ asset('storage/' . $f_evd->file) }}?{{ rand() }}">
+    </div>
+    @endif
     @endforeach
 </div>
 @endsection
@@ -54,5 +62,7 @@ AGRUPADOR: <b>{{ $evidence->reference }}</b>
         e.preventDefault()
         history.back()
     })
+
+    $('input#text-legenda').characterCounter();
 </script>
 @endpush
