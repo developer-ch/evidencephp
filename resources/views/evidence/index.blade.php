@@ -14,7 +14,7 @@
             <b>MENU_GERAL</b>
             <li><a href="{{route('evidence.index')}}" class="indigo-text text-darken-4 modal-trigger" id='btn-update-page'
                     onclick="updatePage()"><i class="material-icons">home</i>RECARREGAR APP</a></li>
-            <li><a href="#modalinfo" class="indigo-text text-darken-4 modal-trigger"><i
+            <li><a id="get-info" href="#modalinfo" class="indigo-text text-darken-4 modal-trigger"><i
                         class="material-icons">info</i>INFORMAÇÕES</a></li>
             <li class="divider" tabindex="-1"></li>
             @auth
@@ -255,5 +255,23 @@
         $('#modal_move_file').modal('open', true)
     });
     $('input#reference').focus();
+    $('a#get-info').click(async () => {
+        const spanVersion = document.getElementById("span-version")
+        const API_URL_BASE = "https://api.github.com/repos/developer-ch/evidencephp"
+
+        var options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        };
+        options.timeZone = 'America/Sao_paulo';
+
+        const response = await fetch(API_URL_BASE)
+        const data = await response.json()
+        spanVersion.innerText = new Date(await data.pushed_at).toLocaleDateString('pt-BR', options)
+    });
 </script>
 @endpush

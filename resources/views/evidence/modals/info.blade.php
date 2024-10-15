@@ -14,25 +14,3 @@
         </div>
     </div>
 </div>
-@push('scripts')
-<script>
-    const spanVersion = document.getElementById("span-version")
-    const API_URL_BASE = "https://api.github.com/repos/developer-ch/evidencephp"
-
-    var options = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-    };
-    options.timeZone = 'America/Sao_paulo';
-
-    (async () => {
-        const response = await fetch(API_URL_BASE)
-        const data = await response.json()
-        spanVersion.innerText = new Date(await data.pushed_at).toLocaleDateString('pt-BR', options)
-    })();
-</script>
-@endpush
