@@ -98,7 +98,7 @@
             </div>
         </div>
         <div id="in_load">
-            <div class="row fixed-action-btn">
+            <div class="row fixed-action-btn hide-on-med-and-up">
                 <form action="{{ route('file.evidence.storage', $searchEvidence) }}" method="POST"
                     enctype="multipart/form-data" class="col s12">
                     @csrf
