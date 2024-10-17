@@ -5,6 +5,7 @@
 @include('evidence.modals.create')
 @include('evidence.modals.edit')
 @include('evidence.modals.delete')
+@include('evidence.modals.upload')
 <div class="row" style="height: 92vh" oncontextmenu="return false;">
     <div class="col s12">
         <a class='hoverable dropdown-trigger btn btn-floating indigo darken-4 tooltipped' href='#'
@@ -44,13 +45,18 @@
             <b>MENU_AGRUPADOR</b>
             <li><a href="#edit" class="indigo-text text-darken-4 modal-trigger"><i
                         class="material-icons">text_fields</i>RENOMEAR</a></li>
+
+            @include('evidence.modals.upload')
+            <li><a href="#uploadImagens"
+                    class="indigo-text text-darken-4 modal-trigger"><i
+                        class="material-icons">file_upload</i>IMPORTAR_IMAGENS</a></li>
+            <li class="divider" tabindex="-1"></li>
             @auth
             @isset($filesEvidence[0])
             <li><a href="{{ route('evidence.downloadFiles', $searchEvidence) }}"
                     class="indigo-text text-darken-4 modal-trigger"><i
                         class="material-icons">file_download</i>BAIXAR_ARQUIVOS</a></li>
             @endisset
-            <li class="divider" tabindex="-1"></li>
             <li><a href="#confirmeDelete" id='btn-delete-selected' class="red-text text-darken-4 modal-trigger"><i
                         class="material-icons">delete_sweep</i><b>EXCLUIR</b></a></li>
             @endauth
@@ -92,44 +98,28 @@
             </div>
         </div>
         <div id="in_load">
-            <form action="{{ route('file.evidence.storage', $searchEvidence) }}" method="POST"
-                enctype="multipart/form-data">
-                @csrf
-                <div class="col s2 m1">
+            <div class="row fixed-action-btn">
+                <form action="{{ route('file.evidence.storage', $searchEvidence) }}" method="POST"
+                    enctype="multipart/form-data" class="col s12">
+                    @csrf
                     <div class="file-field input-field">
-                        <div class="btn teal darken-4 pulse">
-                            <span><i class="material-icons Large teal darken-4 ">add_a_photo</i></span>
-                            <input type="file" name="evidence_file[]" multiple accept="image/*">
+                        <div class="btn right teal darken-4 pulse">
+                            <span><i class="material-icons Large teal darken-4">add_a_photo</i></span>
+                            <input type="file" name="evidence_file[]" multiple accept="image/*" capture>
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path" type="hidden" placeholder="Upload one or more files" readonly
                                 onchange="document.getElementById('in_load').setAttribute('class','hide');document.getElementById('div_load').removeAttribute('class');this.form.submit()">
                         </div>
                     </div>
-                </div>
-                <div class="col s10 m11">
-                    AO IMPORTAR:
-                    <div class="switch">
-                        <label>
-                            <input name="adjust_img" class="teal" type="checkbox" checked type="checkbox"
-                                onclick="this.checked?$('.op_adjust_img').text('SIM,'):$('.op_adjust_img').text('NÃO,')">
-                            <span class="lever teal darken-4"></span>
-                            <b><span class="op_adjust_img">SIM,</span></b>ajustar <b>IMG</b> maior que 1024x768
-                        </label>
-                    </div>
-                    <div class="switch">
-                        <label>
-                            <input name="stamp_to_date" class="teal" type="checkbox" checked
-                                onclick="this.checked?$('.op_stamp_to_date').text('SIM,'):$('.op_stamp_to_date').text('NÃO,')">
-                            <span class="lever teal darken-4"></span>
-                            <b><span class="op_stamp_to_date">SIM,</span></b>carimbar data e hora
-                        </label>
-                    </div>
-                </div>
-            </form>
-            @endsection
-            @endisset
+
+                    <input type="hidden" name="adjust_img" value="on">
+                    <input type="hidden" name="stamp_to_date" stamp_to_date value="on">
+                </form>
+            </div>
         </div>
+        @endsection
+        @endisset
     </div>
     @isset($filesEvidence)
     @section('listing')
