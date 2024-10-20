@@ -33,10 +33,10 @@
             border: 3px solid orange;
         }
 
-        .row {
-            margin: 0;
+        a {
+            color: black;
         }
-
+        
         .carousel {
             position: absolute;
             height: 92.5%;

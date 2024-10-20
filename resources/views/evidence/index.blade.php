@@ -169,10 +169,11 @@
                 <div class="card">
                     <div class="card-image">
                         <a
-                            href="{{ route('file.evidence.carousel', ['evidence' => $searchEvidence, 'evidenceFile' => $f_evd->id]) }}">
+                            href="{{ route('file.evidence.carousel', ['evidence' => $searchEvidence, 'evidenceFile' => $f_evd->id]) }}" class="center">
                             <img height="110px" width="100%"
                                 src="{{ './storage/' . $f_evd->file }}?{{ rand() }}"
                                 style="border-bottom-left-radius:15px;border-bottom-right-radius: 15px">
+                                <p class="{{ $f_evd->description??'white-text' }}">{{ $f_evd->description??'.' }}</p>
                         </a>
                     </div>
                 </div>
@@ -193,6 +194,7 @@
 @endisset
 @push('scripts')
 <script>
+    window.addEventListener("focus",() => location.reload());
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

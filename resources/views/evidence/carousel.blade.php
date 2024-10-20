@@ -6,7 +6,7 @@
     <i class="small material-icons">close</i>
 </a>
 AGRUPADOR: <b>{{ $evidence->reference }}</b>
-<div class="carousel carousel-slider">
+<div class="carousel carousel-slider" style="height: 92vh" oncontextmenu="return false;">
     <div class="carousel-item">
         <form id="frmDescriptionFile"
             action="{{ route('file.evidence.description', $evidenceFile->id) }}" method="POST"
