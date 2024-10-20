@@ -6,20 +6,18 @@
     <i class="small material-icons">close</i>
 </a>
 AGRUPADOR: <b>{{ $evidence->reference }}</b>
-<div class="carousel carousel-slider" style="height: 92vh" oncontextmenu="return false;">
+<div class="carousel carousel-slider" style="height: 90dvh" oncontextmenu="return false;">
     <div class="carousel-item">
         <form id="frmDescriptionFile"
             action="{{ route('file.evidence.description', $evidenceFile->id) }}" method="POST"
-            autocomplete="off">
+            autocomplete="off" class="row">
             @csrf
-            <div class="row">
-                <div class="input-field col s12 m6">
-                    <label for="text-legenda">Legenda:</label>
-                    <input id="text-legenda" type="text" name="description" maxlength="32" data-length="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
-                </div>
+            <div class="input-field col s12 m6">
+                <label for="text-legenda">Legenda:</label>
+                <input id="text-legenda" type="text" name="description" maxlength="32" data-length="32" value="{{ $evidenceFile->description}}" oninput="postDescriptionFile(this.form)">
             </div>
         </form>
-        <img height="86%" width="100%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
+        <img height="80%" width="100%" src=" {{ asset('storage/' . $evidenceFile->file) }}?{{ rand() }}">
     </div>
     @foreach ($evidenceFiles as $f_evd)
     @if ($f_evd->id != $evidenceFile->id)
@@ -35,7 +33,7 @@ AGRUPADOR: <b>{{ $evidence->reference }}</b>
                 </div>
             </div>
         </form>
-        <img height="86%" width="100%" src=" {{ asset('storage/' . $f_evd->file) }}?{{ rand() }}">
+        <img height="80%" width="100%" src=" {{ asset('storage/' . $f_evd->file) }}?{{ rand() }}">
     </div>
     @endif
     @endforeach
