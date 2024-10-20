@@ -194,7 +194,7 @@
 @endisset
 @push('scripts')
 <script>
-    window.addEventListener("focus",() => location.reload());
+    //window.addEventListener("focus",() => location.reload());
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
