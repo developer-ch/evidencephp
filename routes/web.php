@@ -31,6 +31,7 @@ Route::get('evidencefile/{evidenceFile}/{angle?}',[EvidenceFileController::class
 Route::get('evidence_file/dowload/{evidenceFile}',[EvidenceFileController::class,'dowloadFile'])->middleware('auth')->name('file.evidence.dowloadFile');
 
 Route::get('/evidence_files/{evidence}/{evidenceFile}',[EvidenceController::class,'carousel'])->name('file.evidence.carousel');
+Route::get('/evidence_print_occurrence/{evidence}',[EvidenceController::class,'printOccurrence'])->name('evidence.printOccurrence');
 Route::post('evidence_file/description/{evidenceFile}',[EvidenceFileController::class,'updateDescription'])->name('file.evidence.description');
 Route::middleware('auth')->post('evidencefile/move_file/{evidenceFile}',[EvidenceFileController::class,'moveFile'])->name('file.evidence.move');
 

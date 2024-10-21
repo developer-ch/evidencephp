@@ -121,4 +121,11 @@ class EvidenceController extends Controller
         $evidenceFiles = EvidenceFile::where('evidence_id', $evidence->id)->orderBy('id', 'DESC')->get();
         return view('evidence.carousel', compact('evidenceFiles', 'evidenceFile', 'evidence'));
     }
+
+    public function printOccurrence(Evidence $evidence)
+    {
+        $evidenceFiles = EvidenceFile::where('evidence_id', $evidence->id)->whereNotNull('description')->get();
+        return view('evidence.print_occurrence', compact('evidenceFiles','evidence'));
+    }
+
 }

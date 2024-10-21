@@ -50,6 +50,8 @@
             <li><a href="#uploadImagens"
                     class="indigo-text text-darken-4 modal-trigger"><i
                         class="material-icons">file_upload</i>IMPORTAR_IMAGENS</a></li>
+            <li><a href="{{ route('evidence.printOccurrence', $searchEvidence) }}" class="indigo-text text-darken-4"><i
+                        class="material-icons">print</i>IMPRIMIR_LEGENDAS</a></li>
             <li class="divider" tabindex="-1"></li>
             @auth
             @isset($filesEvidence[0])
@@ -59,6 +61,7 @@
             @endisset
             <li><a href="#confirmeDelete" id='btn-delete-selected' class="red-text text-darken-4 modal-trigger"><i
                         class="material-icons">delete_sweep</i><b>EXCLUIR</b></a></li>
+
             @endauth
         </ul>
         @endisset
@@ -173,7 +176,7 @@
                             <img height="110px" width="100%"
                                 src="{{ './storage/' . $f_evd->file }}?{{ rand() }}"
                                 style="border-bottom-left-radius:15px;border-bottom-right-radius: 15px">
-                                <p class="{{ $f_evd->description??'white-text' }}">{{ $f_evd->description??'.' }}</p>
+                            <p class="{{ $f_evd->description??'white-text' }}">{{ $f_evd->description??'.' }}</p>
                         </a>
                     </div>
                 </div>
