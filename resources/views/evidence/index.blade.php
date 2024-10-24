@@ -87,7 +87,7 @@
                 @endforeach
             </select>
             <input type="hidden" name="last_days" value="{{ $lastDays }}">
-            <input type="hidden" name="operation" value="{{ $reference }}">
+            <input type="hidden" name="operation" value="{{ $operation }}">
             <input type="hidden" name="reference" value="{{ $reference }}">
             <b>Filtros:</b>
             <div class="chip">
