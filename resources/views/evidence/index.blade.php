@@ -87,8 +87,26 @@
                 @endforeach
             </select>
             <input type="hidden" name="last_days" value="{{ $lastDays }}">
-            <input type="hidden" name="operation" value="{{ $operation }}">
+            <input type="hidden" name="operation" value="{{ $reference }}">
             <input type="hidden" name="reference" value="{{ $reference }}">
+            <b>Filtros:</b>
+            <div class="chip">
+                {{ $lastDays==99999?'Todos':($lastDays==1?'HOJE':'ÚLTIMOS ' . $lastDays . ' DIAS') }}
+            </div>
+            @isset($reference)
+                @if($operation)
+                    <div class="chip">
+                        {{ str_replace("_","",$operation) }}
+                    </div>
+                @endif
+            @endisset
+            @isset($reference)
+                @if($reference)
+                    <div class="chip">
+                        {{ $reference }}
+                    </div>
+                @endif
+            @endisset
         </form>
         @endisset
         @endsection
@@ -130,7 +148,7 @@
     Encontrei <b>{{ count($filesEvidence) }}</b> arquivo(s)
     <hr />
     @endisset
-    <div class="row" style="margin:0;overflow:auto;height:68vh;overflow:auto;width:100%">
+    <div class="row" style="margin:0;overflow:auto;height:64vh;overflow:auto;width:100%">
         @forelse ($filesEvidence as $f_evd)
         <div class="col s6 m3 l2" style="padding:0 0 0 5px;">
             <div class="card hoverable" style="margin:0 0 5px 0;border-radius:15px;">

@@ -40,8 +40,7 @@
             <button class="btn waves-effect waves-light teal darken-4" type="submit">APLICAR
                 <i class="material-icons left">save</i>
             </button>
-            <a href="{{route('evidence.index')}}" class="btn red modal-trigger" onclick="updatePage()"><i class="material-icons left">delete_sweep</i>REINICIAR FILTROS
-            </a>
+            <a href="{{route('evidence.index')}}" class="btn red" onclick="updatePage()"><i class="material-icons left">delete_sweep</i>PADRÕES</a>
         </div>
     </form>
 </div>

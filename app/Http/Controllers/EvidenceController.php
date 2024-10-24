@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class EvidenceController extends Controller
 {
     use ImageHandler;
-    private const QTY_LAST_DAYS = 7;
+    private const QTY_LAST_DAYS = 1;
 
     public function index(Request $request)
     {
