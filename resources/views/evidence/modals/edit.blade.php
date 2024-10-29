@@ -25,7 +25,7 @@
                         autofocus="autofocus" value="{{ substr($evidence->reference ?? '', 9) ?? '' }}">
                     <label for="reference">Novo Agrupador</label>
                 </div>
-                y
+                <p>{{$messageCharNotAccepted}}</p>
             </div>
         </div>
     </form>

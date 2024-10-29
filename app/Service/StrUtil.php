@@ -20,6 +20,6 @@ class StrUtil
 
     public static function getMessageCharNotAccepted(): string
     {
-        return "Os caracteres (" . implode(" ",Str::replace(" ","espaços",self::CHAR_NOT_ACCEPTED)) . "), serão alterados para _";
+        return "Os (" . implode(" ",Str::replace(" ","espaços",self::CHAR_NOT_ACCEPTED)) . "), serão alterados para _";
     }
 }
