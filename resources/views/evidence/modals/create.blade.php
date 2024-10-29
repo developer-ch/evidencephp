@@ -31,6 +31,7 @@
                     <input id="reference" type="text" name="reference" value="{{ $reference ?? '' }}" required
                         placeholder="Exemplo:C1 ABCD1234567" autofocus="autofocus">
                     <label for="reference">Agrupador</label>
+                    <p>{{$messageCharNotAccepted}}</p>
                 </div>
             </div>
         </div>

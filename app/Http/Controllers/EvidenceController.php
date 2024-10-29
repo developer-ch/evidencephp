@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\EvidenceResource;
 use App\Models\Evidence;
 use App\Models\EvidenceFile;
+use App\Service\StrUtil;
 use App\Traits\ImageHandler;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,9 @@ class EvidenceController extends Controller
             $evidence = Evidence::find($searchEvidence);
             $filesEvidence = EvidenceFile::where('evidence_id', $searchEvidence)->orderBy('id', 'DESC')->get();
         }
-        return view('evidence.index', compact(['evidence', 'evidences', 'searchEvidence', 'filesEvidence','lastDays','operation','reference']));
+
+        $messageCharNotAccepted = StrUtil::getMessageCharNotAccepted();
+        return view('evidence.index', compact(['evidence', 'evidences', 'searchEvidence', 'filesEvidence','lastDays','operation','reference','messageCharNotAccepted']));
     }
 
     public function create()
