@@ -79,10 +79,10 @@
         <form action="{{ route('evidence.index') }}" method="GET">
             <select class="select2 browser-default" name="search_evidence" onchange="this.form.submit()">
                 <option value="" selected disabled>LOCALIZAR AGRUPADOR</option>
-                @foreach ($evidences as $evidence)
-                <option value="{{ $evidence->id }}"
-                    @isset($searchEvidence){{ $searchEvidence == $evidence->id ? 'selected' : '' }}@endisset>
-                    {{ $evidence->reference }}
+                @foreach ($evidences as $evd)
+                <option value="{{ $evd->id }}"
+                    @isset($searchEvidence){{ $searchEvidence == $evd->id ? 'selected' : '' }}@endisset>
+                    {{ $evd->reference }}
                 </option>
                 @endforeach
             </select>
@@ -145,7 +145,8 @@
     @isset($filesEvidence)
     @section('listing')
     @isset($filesEvidence[0])
-    Encontrei <b>{{ count($filesEvidence) }}</b> arquivo(s)
+    Encontrei <b>{{ count($filesEvidence) }}</b> arquivo(s)<br>
+    PARA:<b>{{ str_replace(date('dmY',strtotime($evidence->created_at)),date('d/m/Y',strtotime($evidence->created_at)),$evidence->reference) }}</b>
     <hr />
     @endisset
     <div class="row" style="margin:0;overflow:auto;height:64vh;overflow:auto;width:100%">
