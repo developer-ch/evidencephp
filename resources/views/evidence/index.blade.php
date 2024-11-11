@@ -43,17 +43,18 @@
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content' style="border-radius: 5px">
             <b>MENU_AGRUPADOR</b>
+            @auth
             <li><a href="#edit" class="indigo-text text-darken-4 modal-trigger"><i
                         class="material-icons">text_fields</i>RENOMEAR</a></li>
-
+            @endauth
             @include('evidence.modals.upload')
             <li><a href="#uploadImagens"
                     class="indigo-text text-darken-4 modal-trigger"><i
                         class="material-icons">file_upload</i>IMPORTAR_IMAGENS</a></li>
+            @auth
             <li class="hide-on-med-and-down"><a href="{{ route('evidence.printOccurrence', $searchEvidence) }}" class="indigo-text text-darken-4"><i
                         class="material-icons">print</i>IMPRIMIR_LEGENDAS</a></li>
             <li class="divider" tabindex="-1"></li>
-            @auth
             @isset($filesEvidence[0])
             <li><a href="{{ route('evidence.downloadFiles', $searchEvidence) }}"
                     class="indigo-text text-darken-4 modal-trigger"><i
@@ -229,7 +230,7 @@
         width: '100%',
         language: {
             noResults: function() {
-                return "Não encotrei! Mude os filtros e tente novamente.";
+                return "Mude os filtros e tente novamente.";
             }
         }
     });

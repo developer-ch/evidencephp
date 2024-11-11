@@ -36,7 +36,7 @@ class EvidenceFileController extends Controller
             $evidenceFile->delete();
         }
 
-        return Redirect::route('evidence.index', ['search_evidence' => $evidenceFile->evidence_id])->with('success', "Excluido com sucesso!");
+        return Redirect::route('evidence.index', ['search_evidence' => $evidenceFile->evidence_id])->with('success', "Arquivo removido.");
     }
 
     public function rotate(EvidenceFile $evidenceFile, $angle = 0)

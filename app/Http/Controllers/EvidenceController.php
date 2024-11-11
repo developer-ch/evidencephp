@@ -48,11 +48,11 @@ class EvidenceController extends Controller
             $evidence = Evidence::Create($inputs);
             $traceabilityController = new TraceabilityController;
             $traceabilityController->store("CREATE", "Foi criado o agrupador $evidence->reference");
-            return redirect()->route('evidence.index', ['search_evidence' => $evidence])->with('success', "SUCESSO: Agrupador $request->reference cadastrado");
+            return redirect()->route('evidence.index', ['search_evidence' => $evidence])->with('success', "Cadastrei o agrupador $request->reference");
         } catch (\Throwable $th) {
             $message = $th->getMessage();
             if ($th->getCode() == 23000) {
-                $message = "Agrupador " . $inputs['reference'] . " Já cadastrado!";
+                $message = "Agrupador " . $inputs['reference'] . " já cadastrado.";
             }
             return redirect()->route('evidence.index')->with('error', "ERRO: $message");
         }
@@ -90,7 +90,7 @@ class EvidenceController extends Controller
             return redirect()->route('evidence.index', ['search_evidence' => $evidence->id])->with('success', "SUCESSO: Agrupador $evidenceOld alterado para $evidence->reference");
         } catch (\Throwable $th) {
             if ($th->getCode() == 23000) {
-                return back()->with('warning', "ATENÇÃO: Alteração não realizada já existe o agrupador " . $inputs['reference']);
+                return back()->with('error', "Alteração não realizada, já existe o agrupador " . $inputs['reference']);
             }
             $message = $th->getMessage();
             return redirect()->route('evidence.index')->with('error', "ERRO: $message");
@@ -105,7 +105,7 @@ class EvidenceController extends Controller
             $traceabilityController->store("DELETE", "Foi excluido o agrupador $nameEvidence e seus arquivos");
             $this->deleteAllFiles($nameEvidence);
         }
-        return redirect()->route('evidence.index')->with('success', "SUCESSO: Agrupador $nameEvidence excluido");
+        return redirect()->route('evidence.index')->with('success', "Excluir o agrupador $nameEvidence.");
     }
 
     public function downloadFiles(Evidence $evidence)
@@ -116,7 +116,7 @@ class EvidenceController extends Controller
             $traceabilityController->store("DOWN", "Foram baixados os arquivos do agrupador $evidence->reference");
             return $this->downloadAll($evidence->reference);
         }
-        return redirect()->back()->with('error', "ERRO: Não existe arquivos para dowload");
+        return redirect()->back()->with('error', "Não existe arquivos para download.");
     }
 
     public function carousel(Evidence $evidence, EvidenceFile $evidenceFile)
